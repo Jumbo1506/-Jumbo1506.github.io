@@ -58,7 +58,6 @@
             z-index: 1;
         }
 
-        /* ขยายขนาดกรอบรูปตามที่ต้องการ */
         .photo-frame {
             position: relative;
             width: 350px; 
@@ -71,10 +70,23 @@
             cursor: pointer;
             z-index: 1;
             margin-bottom: 20px;
+            background-color: white;
         }
 
         .photo-frame:hover {
             transform: scale(1.05) rotate(-3deg);
+        }
+
+        /* สไตล์สำหรับซองจดหมายตอนเริ่มต้น */
+        .envelope-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 150px;
+            background-color: #fff0f3;
+            transition: 0.5s;
         }
 
         .slideshow-container {
@@ -108,7 +120,6 @@
             to {opacity: 1}
         }
 
-        /* ขยายขนาดกล่องข้อความ */
         .message-box {
             max-width: 500px;
             width: 85%;
@@ -161,7 +172,9 @@
     </header>
 
     <div class="photo-frame">
-        <div class="slideshow-container">
+        <div id="envelope" class="envelope-placeholder">💌</div>
+
+        <div id="slideshow" class="slideshow-container hidden">
             <div class="mySlides fade"><img src="62805.jpg" alt="รูปที่ 1"></div>
             <div class="mySlides fade"><img src="62806.jpg" alt="รูปที่ 2"></div>
             <div class="mySlides fade"><img src="62807.jpg" alt="รูปที่ 3"></div>
@@ -169,7 +182,7 @@
             <div class="mySlides fade"><img src="62809.jpg" alt="รูปที่ 5"></div>
             <div class="mySlides fade"><img src="62810.jpg" alt="รูปที่ 6"></div>
             <div class="mySlides fade"><img src="62811.jpg" alt="รูปที่ 7"></div>
-            </div>
+        </div>
     </div>
 
     <div class="timer-container">
@@ -192,7 +205,7 @@
     <footer>Made with love for someone special</footer>
 
     <script>
-        // 1. ตั้งค่าวันที่เริ่มคบกัน (แก้ปีจาก 2026 เป็นปีที่คุณเริ่มคบกันจริงๆ นะครับ)
+        // 1. ตั้งค่าวันที่เริ่มคบกัน (อย่าลืมแก้ปีเป็นปีที่คบกันจริงๆ นะครับ)
         const startDate = new Date('2026-02-24'); 
 
         function updateTimer() {
@@ -208,13 +221,22 @@
         const audio = document.getElementById('myAudio');
         const content = document.getElementById('surprise-content');
         const messageBox = document.getElementById('messageBox');
+        const envelope = document.getElementById('envelope');
+        const slideshow = document.getElementById('slideshow');
 
         startBtn.addEventListener('click', () => {
             audio.play().catch(e => console.log("Audio play failed", e));
+            
+            // สลับการแสดงผล
+            envelope.classList.add('hidden');
+            slideshow.classList.remove('hidden');
+            
             content.classList.remove('hidden');
             messageBox.style.display = 'block';
             startBtn.classList.add('hidden');
+            
             createHearts();
+            showSlides(); // เริ่มรันสไลด์หลังจากกดปุ่ม
         });
 
         // 3. เอฟเฟกต์หัวใจตก
@@ -233,6 +255,8 @@
 
         // 4. ระบบ Slideshow
         let slideIndex = 0;
+        let slideTimer;
+
         function showSlides() {
             let i;
             let slides = document.getElementsByClassName("mySlides");
@@ -244,9 +268,8 @@
             if (slides.length > 0) {
                 slides[slideIndex-1].style.display = "block";  
             }
-            setTimeout(showSlides, 3000); 
+            slideTimer = setTimeout(showSlides, 3000); 
         }
-        showSlides();
     </script>
 </body>
 </html>
