@@ -57,9 +57,12 @@
             font-weight: 500;
             color: #ff4d6d;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            z-index: 1;
         }
 
+        /* ส่วนของสไลด์โชว์รูปภาพ */
         .photo-frame {
+            position: relative;
             width: 280px;
             height: 280px;
             border: 12px solid white;
@@ -68,16 +71,44 @@
             overflow: hidden;
             transition: 0.5s;
             cursor: pointer;
+            z-index: 1;
         }
 
         .photo-frame:hover {
             transform: scale(1.05) rotate(-3deg);
         }
 
-        .photo-frame img {
+        /* แก้ไขส่วนนี้: จัดการรูปในสไลด์ */
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .mySlides {
+            display: none; /* ซ่อนรูปทั้งหมดก่อน */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .mySlides img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* เอฟเฟกต์ Fade สำหรับเปลี่ยนรูป */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
         }
 
         .message-box {
@@ -89,6 +120,8 @@
             line-height: 1.8;
             box-shadow: 0 10px 20px rgba(255, 77, 109, 0.1);
             border-bottom: 5px solid #ff4d6d;
+            z-index: 1;
+            display: none; /* ซ่อนไว้ก่อนกดปุ่ม */
         }
 
         /* ปุ่มเริ่มเซอร์ไพรส์ */
@@ -104,6 +137,7 @@
             transition: 0.3s;
             box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
             margin-top: 20px;
+            z-index: 1;
         }
 
         #start-btn:hover {
@@ -118,14 +152,7 @@
             padding: 20px;
             font-size: 0.8rem;
             opacity: 0.7;
-        }
-        #surprise-content {
-            animation: fadeIn 2s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-                to { opacity: 1; }
+            z-index: 1;
         }
     </style>
 </head>
@@ -136,7 +163,24 @@
     </header>
 
     <div class="photo-frame">
-        <img src="62805.jpg" alt="รูปของเรา">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="62805.jpg" alt="รูปของเรา 1">
+            </div>
+            
+            <div class="mySlides fade">
+                <img src="62806.jpg" alt="รูปของเรา 2"> </div>
+            
+            <div class="mySlides fade">
+                <img src="62807.jpg" alt="รูปของเรา 3"> </div>
+            
+            <div class="mySlides fade">
+                <img src="62808.jpg" alt="รูปของเรา 3"> </div>
+            
+            <div class="mySlides fade">
+                <img src="62809.jpg" alt="รูปของเรา 3"> </div>
+            
+            </div>
     </div>
 
     <div class="timer-container">
@@ -146,7 +190,7 @@
     <button id="start-btn">กดตรงนี้สิคับ❤️</button>
 
     <div id="surprise-content" class="hidden">
-        <div class="message-box">
+        <div class="message-box" id="messageBox">
             <p>ตั้งแต่วันแรกจนถึงวันนี้... ขอบคุณนะที่เป็นความสุขให้กัน</p>
             <p>ขอโทษที่บางทีอาจจะดื้อไปบ้าง แต่รักคนเดียวเสมอครับ</p>
             <p style="font-size: 1.5rem;">Happy Anniversary! 🌹</p>
@@ -161,7 +205,7 @@
 
     <script>
         // 1. ตั้งค่าวันที่เริ่มคบกัน (ปี-เดือน-วัน)
-        const startDate = new Date('2026-02-24'); // ** แก้ตรงนี้เป็นวันที่คุณเริ่มคบกัน **
+        const startDate = new Date('2026-02-24'); // ** แก้ตรงนี้เป็นวันที่คุณเริ่มคบกันจริงๆ (ปี ค.ศ. นะครับ) **
 
         function updateTimer() {
             const now = new Date();
@@ -175,10 +219,12 @@
         const startBtn = document.getElementById('start-btn');
         const audio = document.getElementById('myAudio');
         const content = document.getElementById('surprise-content');
+        const messageBox = document.getElementById('messageBox');
 
         startBtn.addEventListener('click', () => {
             audio.play(); // เริ่มเล่นเพลง
             content.classList.remove('hidden'); // โชว์ข้อความ
+            messageBox.style.display = 'block'; // แสดงกล่องข้อความ
             startBtn.classList.add('hidden'); // ซ่อนปุ่ม
             createHearts(); // เริ่มหัวใจตก
         });
@@ -196,6 +242,22 @@
 
                 setTimeout(() => { heart.remove(); }, 5000);
             }, 300);
+        }
+
+        // 4. ระบบ Slideshow (เพิ่มใหม่)
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 3000); // เปลี่ยนรูปทุกๆ 3 วินาที (3000 มิลลิวินาที)
         }
     </script>
 </body>
