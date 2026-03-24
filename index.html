@@ -8,45 +8,24 @@
         @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;500&family=Dancing+Script:wght@700&display=swap');
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Prompt', sans-serif;
             background: linear-gradient(180deg, #ffeef2 0%, #ffdeeb 100%);
             color: #555;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; overflow-x: hidden;
         }
 
         .heart-fall {
-            position: fixed;
-            top: -10%;
-            color: #ff4d6d;
-            font-size: 20px;
-            user-select: none;
-            z-index: -1;
-            animation: fall linear forwards;
+            position: fixed; top: -10%; color: #ff4d6d; font-size: 20px;
+            z-index: -1; animation: fall linear forwards;
         }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
-        }
+        header { margin-top: 40px; z-index: 1; }
+        h1 { font-family: 'Dancing Script', cursive; color: #ff4d6d; font-size: 4rem; margin: 10px 0; }
 
-        header {
-            margin-top: 40px;
-            z-index: 1;
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            color: #ff4d6d;
-            font-size: 4rem;
-            margin: 10px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
+        /* ตัวนับวัน (Timer) */
         .timer-container {
             background: rgba(255, 255, 255, 0.6);
             padding: 15px 25px;
@@ -58,130 +37,61 @@
             z-index: 1;
         }
 
+        /* กรอบรูปขนาดใหญ่ที่ขยายแล้ว */
         .photo-frame {
-            position: relative;
-            width: 350px; 
-            height: 350px; 
-            border: 12px solid white;
-            border-radius: 15px;
+            position: relative; width: 350px; height: 350px; 
+            border: 12px solid white; border-radius: 15px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            overflow: hidden;
-            transition: 0.5s;
-            cursor: pointer;
-            z-index: 1;
+            overflow: hidden; z-index: 1; background: white;
             margin-bottom: 20px;
-            background-color: white;
         }
 
-        .photo-frame:hover {
-            transform: scale(1.05) rotate(-3deg);
-        }
-
-        /* สไตล์สำหรับซองจดหมายตอนเริ่มต้น */
         .envelope-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 150px;
-            background-color: #fff0f3;
-            transition: 0.5s;
+            width: 100%; height: 100%; display: flex;
+            justify-content: center; align-items: center;
+            font-size: 150px; background-color: #fff0f3;
         }
 
-        .slideshow-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
+        .slideshow-container { width: 100%; height: 100%; position: relative; }
+        .mySlides { display: none; width: 100%; height: 100%; position: absolute; }
+        .mySlides img { width: 100%; height: 100%; object-fit: cover; }
 
-        .mySlides {
-            display: none;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* ปุ่มต่างๆ */
+        #question-area { margin-top: 20px; text-align: center; z-index: 10; }
+        .btn-group { margin-top: 15px; position: relative; height: 60px; width: 300px; }
+        
+        .btn {
+            padding: 12px 35px; font-size: 1.2rem; border-radius: 50px;
+            border: none; cursor: pointer; font-family: 'Prompt'; transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
         }
-
-        .mySlides img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
+        #start-btn, #yes-btn { background: #ff4d6d; color: white; }
+        #no-btn { background: #aaa; color: white; position: absolute; white-space: nowrap; }
 
         .message-box {
-            max-width: 500px;
-            width: 85%;
-            background: white;
-            padding: 40px;
-            border-radius: 35px;
-            margin: 30px auto;
-            line-height: 2;
-            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15);
-            border-bottom: 6px solid #ff4d6d;
-            z-index: 1;
-            display: none;
-        }
-
-        #start-btn {
-            background: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Prompt', sans-serif;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
-            margin-top: 20px;
-            z-index: 1;
-        }
-
-        #start-btn:hover {
-            background: #ff758f;
-            transform: translateY(-3px);
+            max-width: 500px; width: 85%; background: white;
+            padding: 40px; border-radius: 35px; margin: 30px auto;
+            line-height: 2; box-shadow: 0 10px 25px rgba(255,77,109,0.15);
+            border-bottom: 6px solid #ff4d6d; display: none;
         }
 
         .hidden { display: none; }
-
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            z-index: 1;
-        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Our Love Story</h1>
-    </header>
+    <header><h1>Our Love Story</h1></header>
 
     <div class="photo-frame">
         <div id="envelope" class="envelope-placeholder">💌</div>
-
         <div id="slideshow" class="slideshow-container hidden">
-            <div class="mySlides fade"><img src="62805.jpg" alt="รูปที่ 1"></div>
-            <div class="mySlides fade"><img src="62806.jpg" alt="รูปที่ 2"></div>
-            <div class="mySlides fade"><img src="62807.jpg" alt="รูปที่ 3"></div>
-            <div class="mySlides fade"><img src="62808.jpg" alt="รูปที่ 4"></div>
-            <div class="mySlides fade"><img src="62809.jpg" alt="รูปที่ 5"></div>
-            <div class="mySlides fade"><img src="62810.jpg" alt="รูปที่ 6"></div>
-            <div class="mySlides fade"><img src="62811.jpg" alt="รูปที่ 7"></div>
+            <div class="mySlides"><img src="62805.jpg"></div>
+            <div class="mySlides"><img src="62806.jpg"></div>
+            <div class="mySlides"><img src="62807.jpg"></div>
+            <div class="mySlides"><img src="62808.jpg"></div>
+            <div class="mySlides"><img src="62809.jpg"></div>
+            <div class="mySlides"><img src="62810.jpg"></div>
+            <div class="mySlides"><img src="62811.jpg"></div>
         </div>
     </div>
 
@@ -189,23 +99,27 @@
         เราอยู่ด้วยกันมาแล้ว <span id="days-count">0</span> วัน
     </div>
 
-    <button id="start-btn">กดตรงนี้สิคับ❤️</button>
+    <button id="start-btn" class="btn">กดตรงนี้สิคับ❤️</button>
+
+    <div id="question-area" class="hidden">
+        <h2 style="color:#ff4d6d;">อยากดูมั้ย? 🥺</h2>
+        <div class="btn-group">
+            <button id="yes-btn" class="btn">อยากสิทำไมจะไม่ ❤️</button>
+            <button id="no-btn" class="btn">ไม่ดูหรอก 😜</button>
+        </div>
+    </div>
 
     <div id="surprise-content" class="hidden">
         <div class="message-box" id="messageBox">
-            <p>ตั้งแต่วันแรกจนถึงวันนี้... ขอบคุณนะที่เป็นความสุขให้กัน</p>
-            <p>ขอโทษที่บางทีอาจจะดื้อไปบ้าง แต่รักคนเดียวเสมอครับ</p>
+            <p>เย้! นึกว่าจะไม่รักกันซะแล้ว 💖</p>
+            <p>ขอบคุณที่เป็นความสุขให้กันเสมอมานะ</p>
             <p style="font-size: 1.5rem;">Happy Anniversary! 🌹</p>
         </div>
-        <audio id="myAudio" loop>
-            <source src="Sunsets.mp3" type="audio/mpeg">
-        </audio>
+        <audio id="myAudio" loop><source src="Sunsets.mp3" type="audio/mpeg"></audio>
     </div>
 
-    <footer>Made with love for someone special</footer>
-
     <script>
-        // 1. ตั้งค่าวันที่เริ่มคบกัน (อย่าลืมแก้ปีเป็นปีที่คบกันจริงๆ นะครับ)
+        // ตั้งค่าวันที่เริ่มคบกัน
         const startDate = new Date('2026-02-24'); 
 
         function updateTimer() {
@@ -216,30 +130,42 @@
         }
         updateTimer();
 
-        // 2. ระบบเริ่มเซอร์ไพรส์
         const startBtn = document.getElementById('start-btn');
-        const audio = document.getElementById('myAudio');
-        const content = document.getElementById('surprise-content');
-        const messageBox = document.getElementById('messageBox');
+        const questionArea = document.getElementById('question-area');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
         const envelope = document.getElementById('envelope');
         const slideshow = document.getElementById('slideshow');
+        const audio = document.getElementById('myAudio');
+        const content = document.getElementById('surprise-content');
 
+        // เมื่อกดปุ่มเริ่ม: ซ่อนปุ่มเริ่ม และโชว์คำถาม Yes/No
         startBtn.addEventListener('click', () => {
-            audio.play().catch(e => console.log("Audio play failed", e));
-            
-            // สลับการแสดงผล
-            envelope.classList.add('hidden');
-            slideshow.classList.remove('hidden');
-            
-            content.classList.remove('hidden');
-            messageBox.style.display = 'block';
             startBtn.classList.add('hidden');
-            
-            createHearts();
-            showSlides(); // เริ่มรันสไลด์หลังจากกดปุ่ม
+            questionArea.classList.remove('hidden');
         });
 
-        // 3. เอฟเฟกต์หัวใจตก
+        // ปุ่ม No หนีเมาส์
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
+
+        // เมื่อกด Yes: เริ่มสไลด์รูป เพลง และหัวใจตก
+        yesBtn.addEventListener('click', () => {
+            questionArea.classList.add('hidden');
+            envelope.classList.add('hidden');
+            slideshow.classList.remove('hidden');
+            content.classList.remove('hidden');
+            document.getElementById('messageBox').style.display = 'block';
+            audio.play();
+            createHearts();
+            showSlides();
+        });
+
         function createHearts() {
             setInterval(() => {
                 const heart = document.createElement('div');
@@ -247,28 +173,19 @@
                 heart.innerHTML = '❤️';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-                heart.style.opacity = Math.random();
                 document.body.appendChild(heart);
-                setTimeout(() => { heart.remove(); }, 5000);
+                setTimeout(() => heart.remove(), 5000);
             }, 300);
         }
 
-        // 4. ระบบ Slideshow
         let slideIndex = 0;
-        let slideTimer;
-
         function showSlides() {
-            let i;
             let slides = document.getElementsByClassName("mySlides");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
+            for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
             slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}    
-            if (slides.length > 0) {
-                slides[slideIndex-1].style.display = "block";  
-            }
-            slideTimer = setTimeout(showSlides, 3000); 
+            if (slideIndex > slides.length) slideIndex = 1;
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 3000);
         }
     </script>
 </body>
