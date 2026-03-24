@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* เอฟเฟกต์หัวใจตก */
         .heart-fall {
             position: fixed;
             top: -10%;
@@ -43,12 +42,11 @@
         h1 {
             font-family: 'Dancing Script', cursive;
             color: #ff4d6d;
-            font-size: 4rem; /* ใหญ่ขึ้นอีกนิด */
+            font-size: 4rem;
             margin: 10px 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* ตัวนับเวลา */
         .timer-container {
             background: rgba(255, 255, 255, 0.6);
             padding: 15px 25px;
@@ -60,11 +58,11 @@
             z-index: 1;
         }
 
-        /* ส่วนของสไลด์โชว์รูปภาพ */
+        /* ขยายขนาดกรอบรูปตามที่ต้องการ */
         .photo-frame {
             position: relative;
-            width: 350px; /* เพิ่มจาก 280px เป็น 350px */
-            height: 350px; /* เพิ่มจาก 280px เป็น 350px */
+            width: 350px; 
+            height: 350px; 
             border: 12px solid white;
             border-radius: 15px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
@@ -79,7 +77,6 @@
             transform: scale(1.05) rotate(-3deg);
         }
 
-        /* แก้ไขส่วนนี้: จัดการรูปในสไลด์ */
         .slideshow-container {
             width: 100%;
             height: 100%;
@@ -87,7 +84,7 @@
         }
 
         .mySlides {
-            display: none; /* ซ่อนรูปทั้งหมดก่อน */
+            display: none;
             width: 100%;
             height: 100%;
             position: absolute;
@@ -101,7 +98,6 @@
             object-fit: cover;
         }
 
-        /* เอฟเฟกต์ Fade สำหรับเปลี่ยนรูป */
         .fade {
             animation-name: fade;
             animation-duration: 1.5s;
@@ -112,21 +108,21 @@
             to {opacity: 1}
         }
 
+        /* ขยายขนาดกล่องข้อความ */
         .message-box {
-            max-width: 500px; /* ขยายความกว้างสูงสุดเป็น 500px */
-            width: 85%; /* สำหรับหน้าจอมือถือให้กว้าง 85% */
+            max-width: 500px;
+            width: 85%;
             background: white;
-            padding: 40px; /* เพิ่มพื้นที่ว่างด้านใน */
+            padding: 40px;
             border-radius: 35px;
             margin: 30px auto;
-            line-height: 2; /* เว้นบรรทัดให้ห่างขึ้นนิดหน่อยให้อ่านง่าย */
+            line-height: 2;
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15);
             border-bottom: 6px solid #ff4d6d;
             z-index: 1;
             display: none;
         }
 
-        /* ปุ่มเริ่มเซอร์ไพรส์ */
         #start-btn {
             background: #ff4d6d;
             color: white;
@@ -166,26 +162,11 @@
 
     <div class="photo-frame">
         <div class="slideshow-container">
-            <div class="mySlides fade">
-                <img src="62805.jpg" alt="รูปของเรา 1">
-            </div>
-            
-            <div class="mySlides fade">
-                <img src="62806.jpg" alt="รูปของเรา 2"> 
-            </div>
-            
-            <div class="mySlides fade">
-                <img src="62807.jpg" alt="รูปของเรา 3"> 
-            </div>
-            
-            <div class="mySlides fade">
-                <img src="62808.jpg" alt="รูปของเรา 4"> 
-            </div>
-            
-            <div class="mySlides fade">
-                <img src="62809.jpg" alt="รูปของเรา 5"> 
-            </div>
-            
+            <div class="mySlides fade"><img src="62805.jpg" alt="รูปที่ 1"></div>
+            <div class="mySlides fade"><img src="62806.jpg" alt="รูปที่ 2"></div>
+            <div class="mySlides fade"><img src="62807.jpg" alt="รูปที่ 3"></div>
+            <div class="mySlides fade"><img src="62808.jpg" alt="รูปที่ 4"></div>
+            <div class="mySlides fade"><img src="62809.jpg" alt="รูปที่ 5"></div>
             </div>
     </div>
 
@@ -201,7 +182,6 @@
             <p>ขอโทษที่บางทีอาจจะดื้อไปบ้าง แต่รักคนเดียวเสมอครับ</p>
             <p style="font-size: 1.5rem;">Happy Anniversary! 🌹</p>
         </div>
-
         <audio id="myAudio" loop>
             <source src="Sunsets.mp3" type="audio/mpeg">
         </audio>
@@ -210,8 +190,8 @@
     <footer>Made with love for someone special</footer>
 
     <script>
-        // 1. ตั้งค่าวันที่เริ่มคบกัน (ปี-เดือน-วัน)
-        const startDate = new Date('2026-02-24'); // ** แก้ตรงนี้เป็นวันที่คุณเริ่มคบกันจริงๆ (ปี ค.ศ. นะครับ) **
+        // 1. ตั้งค่าวันที่เริ่มคบกัน (แก้ปีจาก 2026 เป็นปีที่คุณเริ่มคบกันจริงๆ นะครับ)
+        const startDate = new Date('2024-02-24'); 
 
         function updateTimer() {
             const now = new Date();
@@ -221,18 +201,18 @@
         }
         updateTimer();
 
-        // 2. ระบบเริ่มเซอร์ไพรส์ (เล่นเพลง + โชว์ข้อความ)
+        // 2. ระบบเริ่มเซอร์ไพรส์
         const startBtn = document.getElementById('start-btn');
         const audio = document.getElementById('myAudio');
         const content = document.getElementById('surprise-content');
         const messageBox = document.getElementById('messageBox');
 
         startBtn.addEventListener('click', () => {
-            audio.play(); // เริ่มเล่นเพลง
-            content.classList.remove('hidden'); // โชว์ข้อความ
-            messageBox.style.display = 'block'; // แสดงกล่องข้อความ
-            startBtn.classList.add('hidden'); // ซ่อนปุ่ม
-            createHearts(); // เริ่มหัวใจตก
+            audio.play().catch(e => console.log("Audio play failed", e));
+            content.classList.remove('hidden');
+            messageBox.style.display = 'block';
+            startBtn.classList.add('hidden');
+            createHearts();
         });
 
         // 3. เอฟเฟกต์หัวใจตก
@@ -245,15 +225,12 @@
                 heart.style.animationDuration = Math.random() * 3 + 2 + 's';
                 heart.style.opacity = Math.random();
                 document.body.appendChild(heart);
-
                 setTimeout(() => { heart.remove(); }, 5000);
             }, 300);
         }
 
-        // 4. ระบบ Slideshow (เพิ่มใหม่)
+        // 4. ระบบ Slideshow
         let slideIndex = 0;
-        showSlides();
-
         function showSlides() {
             let i;
             let slides = document.getElementsByClassName("mySlides");
@@ -262,9 +239,12 @@
             }
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
-            slides[slideIndex-1].style.display = "block";  
-            setTimeout(showSlides, 3000); // เปลี่ยนรูปทุกๆ 3 วินาที (3000 มิลลิวินาที)
+            if (slides.length > 0) {
+                slides[slideIndex-1].style.display = "block";  
+            }
+            setTimeout(showSlides, 3000); 
         }
+        showSlides();
     </script>
 </body>
 </html>
