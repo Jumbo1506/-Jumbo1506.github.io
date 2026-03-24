@@ -3,47 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Special Day ❤️</title>
+    <title>Happy Anniversary My Love ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;500&family=Dancing+Script:wght@700&display=swap');
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Prompt', sans-serif;
-            background-color: #ffeef2;
+            background: linear-gradient(180deg, #ffeef2 0%, #ffdeeb 100%);
             color: #555;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* เอฟเฟกต์หัวใจตก */
+        .heart-fall {
+            position: fixed;
+            top: -10%;
+            color: #ff4d6d;
+            font-size: 20px;
+            user-select: none;
+            z-index: -1;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
         }
 
         header {
-            margin-top: 50px;
-            padding: 20px;
+            margin-top: 40px;
+            z-index: 1;
         }
 
         h1 {
+            font-family: 'Dancing Script', cursive;
             color: #ff4d6d;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* ส่วนของรูปภาพ */
+        /* ตัวนับเวลา */
+        .timer-container {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px 25px;
+            border-radius: 50px;
+            margin: 20px 0;
+            font-weight: 500;
+            color: #ff4d6d;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
         .photo-frame {
-            width: 300px;
-            height: 300px;
-            border: 10px solid white;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 280px;
+            height: 280px;
+            border: 12px solid white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             overflow: hidden;
-            margin: 20px auto;
-            transition: transform 0.3s;
+            transition: 0.5s;
+            cursor: pointer;
         }
 
         .photo-frame:hover {
-            transform: scale(1.05) rotate(2deg);
+            transform: scale(1.05) rotate(-3deg);
         }
 
         .photo-frame img {
@@ -52,75 +80,123 @@
             object-fit: cover;
         }
 
-        /* ข้อความความในใจ */
         .message-box {
-            max-width: 80%;
+            max-width: 85%;
             background: white;
-            padding: 25px;
-            border-radius: 20px;
-            margin: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 30px;
+            margin: 30px 15px;
+            line-height: 1.8;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.1);
+            border-bottom: 5px solid #ff4d6d;
         }
 
-        /* หัวใจเต้น */
-        .heart {
-            color: #ff4d6d;
-            font-size: 50px;
-            animation: beat 0.8s infinite alternate;
-        }
-
-        @keyframes beat {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }
-        }
-
-        /* ตัวควบคุมเพลงแบบซ่อนรูป */
-        .music-player {
+        /* ปุ่มเริ่มเซอร์ไพรส์ */
+        #start-btn {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Prompt', sans-serif;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
             margin-top: 20px;
-            padding: 10px;
         }
+
+        #start-btn:hover {
+            background: #ff758f;
+            transform: translateY(-3px);
+        }
+
+        .hidden { display: none; }
 
         footer {
-            margin-top: 40px;
-            padding-bottom: 30px;
-            font-size: 0.9rem;
-            color: #ff8fa3;
+            margin-top: auto;
+            padding: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        #surprise-content {
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+                to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="heart">❤️</div>
-        <h1>Happy Anniversary!</h1>
-        <p>สุขสันต์วันครบรอบนะคนดี</p>
+        <h1>Our Love Story</h1>
     </header>
 
     <div class="photo-frame">
-        <img src="https://via.placeholder.com/300" alt="Our Memory" id="mainPhoto">
+        <img src="62805.jpg" alt="รูปของเรา">
+    </div>
+
+    <div class="timer-container">
+        เราอยู่ด้วยกันมาแล้ว <span id="days-count">0</span> วัน
+    </div>
+
+    <button id="start-btn">กดตรงนี้สิคับ❤️</button>
+
+    <div id="surprise-content" class="hidden">
+        <div class="message-box">
+            <p>ตั้งแต่วันแรกจนถึงวันนี้... ขอบคุณนะที่เป็นความสุขให้กัน</p>
+            <p>ขอโทษที่บางทีอาจจะดื้อไปบ้าง แต่รักคนเดียวเสมอครับ</p>
+            <p style="font-size: 1.5rem;">Happy Anniversary! 🌹</p>
         </div>
 
-    <div class="message-box">
-        <p>ขอบคุณที่อยู่ข้างกันมาตลอดนะ</p>
-        <p>ไม่ว่าวันข้างหน้าจะเป็นยังไง อยากให้รู้ว่ารักมากนะจ๊ะ</p>
-        <p><b>จาก: [ชื่อของคุณ]</b></p>
-    </div>
-
-    <div class="music-player">
-        <audio controls autoplay loop>
-            <source src="your-music-file.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
+        <audio id="myAudio" loop>
+            <source src="Sunsets.mp3" type="audio/mpeg">
         </audio>
-        <p style="font-size: 12px; color: #888;">(กด Play เพื่อฟังเพลงที่เราเลือกให้)</p>
     </div>
 
-    <footer>
-        Made with ❤️ for You
-    </footer>
+    <footer>Made with love for someone special</footer>
 
     <script>
-        // คุณสามารถเพิ่มลูกเล่น JS เล็กๆ น้อยๆ ตรงนี้ได้ เช่น การเปลี่ยนรูปอัตโนมัติ
-        console.log("Website Loaded! Happy Anniversary.");
+        // 1. ตั้งค่าวันที่เริ่มคบกัน (ปี-เดือน-วัน)
+        const startDate = new Date('2026-02-24'); // ** แก้ตรงนี้เป็นวันที่คุณเริ่มคบกัน **
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('days-count').innerText = days;
+        }
+        updateTimer();
+
+        // 2. ระบบเริ่มเซอร์ไพรส์ (เล่นเพลง + โชว์ข้อความ)
+        const startBtn = document.getElementById('start-btn');
+        const audio = document.getElementById('myAudio');
+        const content = document.getElementById('surprise-content');
+
+        startBtn.addEventListener('click', () => {
+            audio.play(); // เริ่มเล่นเพลง
+            content.classList.remove('hidden'); // โชว์ข้อความ
+            startBtn.classList.add('hidden'); // ซ่อนปุ่ม
+            createHearts(); // เริ่มหัวใจตก
+        });
+
+        // 3. เอฟเฟกต์หัวใจตก
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-fall');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                heart.style.opacity = Math.random();
+                document.body.appendChild(heart);
+
+                setTimeout(() => { heart.remove(); }, 5000);
+            }, 300);
+        }
     </script>
 </body>
 </html>
