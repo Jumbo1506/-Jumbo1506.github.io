@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Day ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;500&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+            background-color: #ffeef2;
+            color: #555;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        header {
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* ส่วนของรูปภาพ */
+        .photo-frame {
+            width: 300px;
+            height: 300px;
+            border: 10px solid white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 20px auto;
+            transition: transform 0.3s;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ข้อความความในใจ */
+        .message-box {
+            max-width: 80%;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* หัวใจเต้น */
+        .heart {
+            color: #ff4d6d;
+            font-size: 50px;
+            animation: beat 0.8s infinite alternate;
+        }
+
+        @keyframes beat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+
+        /* ตัวควบคุมเพลงแบบซ่อนรูป */
+        .music-player {
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-bottom: 30px;
+            font-size: 0.9rem;
+            color: #ff8fa3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="heart">❤️</div>
+        <h1>Happy Anniversary!</h1>
+        <p>สุขสันต์วันครบรอบนะคนดี</p>
+    </header>
+
+    <div class="photo-frame">
+        <img src="https://via.placeholder.com/300" alt="Our Memory" id="mainPhoto">
+        </div>
+
+    <div class="message-box">
+        <p>ขอบคุณที่อยู่ข้างกันมาตลอดนะ</p>
+        <p>ไม่ว่าวันข้างหน้าจะเป็นยังไง อยากให้รู้ว่ารักมากนะจ๊ะ</p>
+        <p><b>จาก: [ชื่อของคุณ]</b></p>
+    </div>
+
+    <div class="music-player">
+        <audio controls autoplay loop>
+            <source src="your-music-file.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <p style="font-size: 12px; color: #888;">(กด Play เพื่อฟังเพลงที่เราเลือกให้)</p>
+    </div>
+
+    <footer>
+        Made with ❤️ for You
+    </footer>
+
+    <script>
+        // คุณสามารถเพิ่มลูกเล่น JS เล็กๆ น้อยๆ ตรงนี้ได้ เช่น การเปลี่ยนรูปอัตโนมัติ
+        console.log("Website Loaded! Happy Anniversary.");
+    </script>
+</body>
+</html>
